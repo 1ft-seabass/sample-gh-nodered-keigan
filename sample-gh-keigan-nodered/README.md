@@ -2,13 +2,13 @@
 
 ## Node-RED
 
-`node-red-flow.json` をインポートする
+[node-red-flow.json](node-red-flow.json) をインポートする
 
 ![image](https://i.gyazo.com/d57fc925070cb8692d9bba54c29ea150.png)
 
 Node-RED を起動している IP アドレスを確認します。
 
-## Grashopper http-degree-data-request.gh
+## Grasshopper http-degree-data-request.gh
 
 ![image](https://i.gyazo.com/c93572c548179c40a9f4d6cbbeb20cef.png)
 

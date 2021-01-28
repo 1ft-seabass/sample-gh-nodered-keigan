@@ -2,13 +2,13 @@
 
 ## Node-RED
 
-`node-red-flow.json` をインポートする
+[node-red-flow.json](node-red-flow.json) をインポートする
 
 ![image](https://i.gyazo.com/9b770b88fa11e7470fbdf3b34711dbb7.png)
 
 Node-RED を起動している IP アドレスを確認します。
 
-## Grashopper http-simple-request.gh
+## Grasshopper http-simple-request.gh
 
 ![image](https://i.gyazo.com/c7f492cd5f74590881dbe8b4342dd10f.png)
 
@@ -18,14 +18,19 @@ Node-RED を起動している IP アドレスを確認します。
 
 python ノードの中の Node-RED のURLを変更します。
 
+* データを送ってみましょう。
+* 受信を確認しましょう。
 
-* データを送ってみる。
-* 受信を確認する。
+![image](https://i.gyazo.com/ca500903c63761d1e691e8c163207baa.png)
 
-## Grashopper http-slider-data-request.gh
+このようにデータが動きます。
+
+## Grasshopper http-slider-data-request.gh
 
 `http-slider-data-request.gh` を開く。
 
-こちらもためしてみる。
+こちらもためしてみましょう。
 
+![image](https://i.gyazo.com/f2b35e16cf16026a6421dc93687929ed.png)
 
+このようにデータが動きます。
