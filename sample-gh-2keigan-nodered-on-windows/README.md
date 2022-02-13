@@ -33,5 +33,24 @@
 
 ## Node-RED
 
+![image](https://i.gyazo.com/0eda1bf85cfa6221884d024da68a5317.png)
+
 [node-red-flow.json](node-red-flow.json) をインポートします。
 
+![image](https://i.gyazo.com/dc110b8f202d68dc2d43b879b9d13ef9.png)
+
+1 台目 2 台目それぞれ Keigan モーターのシリアルポートのアドレスを変更します。[1 台の Keigan モーターでの操作 sample-gh-keigan-nodered-on-windows](../sample-gh-keigan-nodered-on-windows/README.md) で行った感じでやってみましょう。
+
+![image](https://i.gyazo.com/b98fa4abca71ee00245921b4f770d94b.png)
+
+デプロイしたら設定完了です。
+
+![image](https://i.gyazo.com/9289b1228e6fee18a252e2e212a3d732.png)
+
+こちらがうまく動くか試してみましょう。
+
+![image](https://i.gyazo.com/91e669dfd149677915c932e6f19342f8.png)
+
+![image](https://i.gyazo.com/e6c9d0bf925a831c65952218d99fe4f3.png)
+
+うまく動いたら GH からの操作を、1 台目 2 台目それぞれの URL にデータを流してみましょう！
