@@ -15,7 +15,7 @@
 
 ## この仕組みについて
 
-- gh から 1 台つないだ KeiganMotor をつないだ Node-RED を動かす仕組みです。
+- gh から 2 台つないだ KeiganMotor をつないだ Node-RED を動かす仕組みです。
 - たとえば、gh から degree という角度情報を `{"degree":30}` という JSON データで送って、KeiganMotor をつないだ Node-RED で 30 度 KeiganMotor が動くという仕組みです。
 - Windows PC において、[LED による Keigan 疎通確認 sample-connectivity-check-on-by-led-windows](../sample-connectivity-check-on-by-led-windows/README.md) と [1 台の Keigan モーターでの操作 sample-gh-keigan-nodered-on-windows](../sample-gh-keigan-nodered-on-windows/README.md) が、ちゃんと成功してから、この手順に着手しましょう。
   - いきなり着手すると、チェックすべき項目がかなりあるので、むちゃくちゃハマると思います。着実に行きましょう。
