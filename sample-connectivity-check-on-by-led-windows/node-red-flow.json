@@ -1,0 +1,147 @@
+[
+  {
+      "id": "93cd24d176975f5d",
+      "type": "inject",
+      "z": "7b1a5117519f9638",
+      "name": "R",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "[255,0,0]",
+      "payloadType": "json",
+      "x": 230,
+      "y": 240,
+      "wires": [
+          [
+              "e36fc7c5efa85403"
+          ]
+      ]
+  },
+  {
+      "id": "88e5279c9899c7da",
+      "type": "inject",
+      "z": "7b1a5117519f9638",
+      "name": "G",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "[0,255,0]",
+      "payloadType": "json",
+      "x": 230,
+      "y": 300,
+      "wires": [
+          [
+              "e36fc7c5efa85403"
+          ]
+      ]
+  },
+  {
+      "id": "7558e14d3d5fccc7",
+      "type": "inject",
+      "z": "7b1a5117519f9638",
+      "name": "B",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "[0,0,255]",
+      "payloadType": "json",
+      "x": 230,
+      "y": 360,
+      "wires": [
+          [
+              "e36fc7c5efa85403"
+          ]
+      ]
+  },
+  {
+      "id": "e36fc7c5efa85403",
+      "type": "function",
+      "z": "7b1a5117519f9638",
+      "name": "LED 命令 + payload からのカラー指示を反映",
+      "func": "const commandNum = 0xE0;\n\nlet buffer = new ArrayBuffer(9);\n\n// LED コマンド\nnew DataView(buffer).setUint8(0,commandNum);\n\n// タスク管理用ID\nconst cid = 0;\nnew DataView(buffer).setUint16(1,cid);\n\n// LED 点灯方法\n// LED_STATE_OFF = 0, // LED消灯\n// LED_STATE_ON_SOLID = 1, // LED点灯（点灯しっぱなし）\n// LED_STATE_ON_FLASH = 2, // LED点滅（一定間隔で点滅）\n// LED_STATE_ON_DIM = 3 // LEDがゆっくり明滅する\nnew DataView(buffer).setUint8(3,3);\n\n// payload からカラー設定\nnew DataView(buffer).setUint8(4,msg.payload[0]);\nnew DataView(buffer).setUint8(5,msg.payload[1]);\nnew DataView(buffer).setUint8(6,msg.payload[2]);\n\n// 巡回冗長検査\nnew DataView(buffer).setUint16(7,0);\n\nmsg.payload = Buffer.from(buffer);\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 570,
+      "y": 240,
+      "wires": [
+          [
+              "eb828a5c072e7a69"
+          ]
+      ]
+  },
+  {
+      "id": "eb828a5c072e7a69",
+      "type": "serial out",
+      "z": "7b1a5117519f9638",
+      "name": "",
+      "serial": "79b7585d97706561",
+      "x": 870,
+      "y": 240,
+      "wires": []
+  },
+  {
+      "id": "efbf8859bf1d490a",
+      "type": "comment",
+      "z": "7b1a5117519f9638",
+      "name": "LED チェック",
+      "info": "",
+      "x": 230,
+      "y": 180,
+      "wires": []
+  },
+  {
+      "id": "79b7585d97706561",
+      "type": "serial-port",
+      "serialport": "COM4",
+      "serialbaud": "115200",
+      "databits": "8",
+      "parity": "none",
+      "stopbits": "1",
+      "waitfor": "",
+      "dtr": "none",
+      "rts": "none",
+      "cts": "none",
+      "dsr": "none",
+      "newline": "\\n",
+      "bin": "false",
+      "out": "char",
+      "addchar": "",
+      "responsetimeout": "10000"
+  }
+]
