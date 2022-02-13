@@ -1,0 +1,603 @@
+[
+  {
+      "id": "f41e2296.9c19e",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "パラメータ設定",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "[]",
+              "tot": "json"
+          },
+          {
+              "t": "set",
+              "p": "payload[0]",
+              "pt": "msg",
+              "to": "keiganDegree",
+              "tot": "msg"
+          },
+          {
+              "t": "set",
+              "p": "payload[1]",
+              "pt": "msg",
+              "to": "keiganSpeed",
+              "tot": "msg"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 740,
+      "y": 320,
+      "wires": [
+          [
+              "06b4a5d6b20df699"
+          ]
+      ]
+  },
+  {
+      "id": "800c585c.3cf628",
+      "type": "http in",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "url": "/cmd/MoveTo/PositionDeg",
+      "method": "post",
+      "upload": false,
+      "swaggerDoc": "",
+      "x": 300,
+      "y": 140,
+      "wires": [
+          [
+              "b5040a1c.d734d8",
+              "aa12d9bc92cf77fd"
+          ]
+      ]
+  },
+  {
+      "id": "4bdd485f.57fdd8",
+      "type": "http response",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "statusCode": "",
+      "headers": {},
+      "x": 990,
+      "y": 400,
+      "wires": []
+  },
+  {
+      "id": "25debabf.9b21c6",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "rules": [
+          {
+              "t": "set",
+              "p": "keiganDegree",
+              "pt": "msg",
+              "to": "payload.degree",
+              "tot": "msg"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 890,
+      "y": 140,
+      "wires": [
+          [
+              "e8abd784d48483f2"
+          ]
+      ]
+  },
+  {
+      "id": "c2757912.2bf7f8",
+      "type": "inject",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "{\"degree\":180}",
+      "payloadType": "json",
+      "x": 270,
+      "y": 580,
+      "wires": [
+          [
+              "220c23fe.dda28c"
+          ]
+      ]
+  },
+  {
+      "id": "220c23fe.dda28c",
+      "type": "http request",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "method": "POST",
+      "ret": "obj",
+      "paytoqs": "ignore",
+      "url": "http://127.0.0.1:1880/cmd/MoveTo/PositionDeg",
+      "tls": "",
+      "persist": false,
+      "proxy": "",
+      "authType": "",
+      "senderr": false,
+      "x": 490,
+      "y": 600,
+      "wires": [
+          [
+              "4c06033f.18364c"
+          ]
+      ]
+  },
+  {
+      "id": "4c06033f.18364c",
+      "type": "debug",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "false",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 720,
+      "y": 600,
+      "wires": []
+  },
+  {
+      "id": "a4194261.7e36d",
+      "type": "inject",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "{     \"degree\":90 }",
+      "payloadType": "json",
+      "x": 270,
+      "y": 640,
+      "wires": [
+          [
+              "220c23fe.dda28c"
+          ]
+      ]
+  },
+  {
+      "id": "b5040a1c.d734d8",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "基本回転速度 keiganSpeed (rpm)",
+      "rules": [
+          {
+              "t": "set",
+              "p": "keiganSpeed",
+              "pt": "msg",
+              "to": "250",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 610,
+      "y": 140,
+      "wires": [
+          [
+              "25debabf.9b21c6"
+          ]
+      ]
+  },
+  {
+      "id": "23b39df6.c83182",
+      "type": "comment",
+      "z": "69910d73c4999f01",
+      "name": "テスト用",
+      "info": "",
+      "x": 240,
+      "y": 540,
+      "wires": []
+  },
+  {
+      "id": "335a43cab6d21706",
+      "type": "function",
+      "z": "69910d73c4999f01",
+      "name": "モーター動作を許可",
+      "func": "const commandNum = 0x51;\n\nlet buffer = new ArrayBuffer(5);\n\nnew DataView(buffer).setUint8(0,commandNum);\n\n// タスク管理用ID\nconst cid = 0;\nnew DataView(buffer).setUint16(1,cid);\n\n// 巡回冗長検査\nnew DataView(buffer).setUint16(3,0);\n\nmsg.payload = Buffer.from(buffer);\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 400,
+      "y": 320,
+      "wires": [
+          [
+              "90ebfdcb5903b1dd"
+          ]
+      ]
+  },
+  {
+      "id": "598da6e198f9e951",
+      "type": "serial out",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "serial": "79b7585d97706561",
+      "x": 1030,
+      "y": 600,
+      "wires": []
+  },
+  {
+      "id": "0cf7530a32983f3a",
+      "type": "link in",
+      "z": "69910d73c4999f01",
+      "name": "Keigan Serial",
+      "links": [
+          "90ebfdcb5903b1dd",
+          "d583e64c3ef4c51a",
+          "ca2ae022920a3999"
+      ],
+      "x": 935,
+      "y": 600,
+      "wires": [
+          [
+              "598da6e198f9e951"
+          ]
+      ]
+  },
+  {
+      "id": "90ebfdcb5903b1dd",
+      "type": "link out",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "mode": "link",
+      "links": [
+          "0cf7530a32983f3a"
+      ],
+      "x": 535,
+      "y": 320,
+      "wires": []
+  },
+  {
+      "id": "06b4a5d6b20df699",
+      "type": "function",
+      "z": "69910d73c4999f01",
+      "name": "rpm で speed 指定",
+      "func": "const commandNum = 0x58;\n\nconst moveToDegree = msg.payload[0];\nconst rpm = msg.payload[1];\n\n// バッファ用意\nlet buffer = new ArrayBuffer(9);\n\n// speed コマンド\nnew DataView(buffer).setUint8(0,commandNum);\n\n// タスク管理用ID\nconst cid = 0;\nnew DataView(buffer).setUint16(1,cid);\n\n// radian / speed を rpm で指定\nconst rpm_convert_const_value = 0.10471975511965977;\nconst degree_speed = rpm * rpm_convert_const_value;\nnew DataView(buffer).setFloat32(3,degree_speed);\n\n// 巡回冗長検査\nnew DataView(buffer).setUint16(7,0);\n\nmsg.payload = Buffer.from(buffer);\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 930,
+      "y": 320,
+      "wires": [
+          [
+              "d583e64c3ef4c51a"
+          ]
+      ]
+  },
+  {
+      "id": "e8abd784d48483f2",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "step1",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "payload",
+              "tot": "msg"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 260,
+      "wires": [
+          [
+              "335a43cab6d21706",
+              "99bd697046143f76"
+          ]
+      ]
+  },
+  {
+      "id": "0f2e9465782ee3c8",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "step2",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "payload",
+              "tot": "msg"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 610,
+      "y": 260,
+      "wires": [
+          [
+              "f41e2296.9c19e",
+              "ba641f73f1c48fa4"
+          ]
+      ]
+  },
+  {
+      "id": "d583e64c3ef4c51a",
+      "type": "link out",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "mode": "link",
+      "links": [
+          "0cf7530a32983f3a"
+      ],
+      "x": 1055,
+      "y": 320,
+      "wires": []
+  },
+  {
+      "id": "99bd697046143f76",
+      "type": "delay",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "pauseType": "delay",
+      "timeout": "100",
+      "timeoutUnits": "milliseconds",
+      "rate": "1",
+      "nbRateUnits": "1",
+      "rateUnits": "second",
+      "randomFirst": "1",
+      "randomLast": "5",
+      "randomUnits": "seconds",
+      "drop": false,
+      "allowrate": false,
+      "outputs": 1,
+      "x": 430,
+      "y": 260,
+      "wires": [
+          [
+              "0f2e9465782ee3c8"
+          ]
+      ]
+  },
+  {
+      "id": "fdae7e6526503aa5",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "step3",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "payload",
+              "tot": "msg"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 610,
+      "y": 400,
+      "wires": [
+          [
+              "e40fa61fd0568ff3",
+              "00c2be8102cabb41"
+          ]
+      ]
+  },
+  {
+      "id": "ba641f73f1c48fa4",
+      "type": "delay",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "pauseType": "delay",
+      "timeout": "100",
+      "timeoutUnits": "milliseconds",
+      "rate": "1",
+      "nbRateUnits": "1",
+      "rateUnits": "second",
+      "randomFirst": "1",
+      "randomLast": "5",
+      "randomUnits": "seconds",
+      "drop": false,
+      "allowrate": false,
+      "outputs": 1,
+      "x": 810,
+      "y": 260,
+      "wires": [
+          [
+              "fdae7e6526503aa5"
+          ]
+      ]
+  },
+  {
+      "id": "e40fa61fd0568ff3",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "パラメータ設定",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "[]",
+              "tot": "json"
+          },
+          {
+              "t": "set",
+              "p": "payload[0]",
+              "pt": "msg",
+              "to": "keiganDegree",
+              "tot": "msg"
+          },
+          {
+              "t": "set",
+              "p": "payload[1]",
+              "pt": "msg",
+              "to": "keiganSpeed",
+              "tot": "msg"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 740,
+      "y": 460,
+      "wires": [
+          [
+              "b8fe85db42f3d0c1"
+          ]
+      ]
+  },
+  {
+      "id": "b8fe85db42f3d0c1",
+      "type": "function",
+      "z": "69910d73c4999f01",
+      "name": "角度指定",
+      "func": "const commandNum = 0x66;\n\nconst moveToDegree = msg.payload[0];\nconst rpm = msg.payload[1];\n\n// バッファ用意\nlet buffer = new ArrayBuffer(9);\n\n// speed コマンド\nnew DataView(buffer).setUint8(0,commandNum);\n\n// タスク管理用ID\nconst cid = 0;\nnew DataView(buffer).setUint16(1,cid);\n\n// 角度 radian\nconst radian = moveToDegree * 0.017453292519943295;\nnew DataView(buffer).setFloat32(3,radian);\n// 巡回冗長検査\nnew DataView(buffer).setUint16(7,0);\n\nmsg.payload = Buffer.from(buffer);\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 900,
+      "y": 460,
+      "wires": [
+          [
+              "ca2ae022920a3999"
+          ]
+      ]
+  },
+  {
+      "id": "ca2ae022920a3999",
+      "type": "link out",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "mode": "link",
+      "links": [
+          "0cf7530a32983f3a"
+      ],
+      "x": 995,
+      "y": 460,
+      "wires": []
+  },
+  {
+      "id": "aa12d9bc92cf77fd",
+      "type": "debug",
+      "z": "69910d73c4999f01",
+      "name": "",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "false",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 530,
+      "y": 80,
+      "wires": []
+  },
+  {
+      "id": "268545b67ca6cdd4",
+      "type": "comment",
+      "z": "69910d73c4999f01",
+      "name": "Keigan Motor への接続",
+      "info": "",
+      "x": 1020,
+      "y": 560,
+      "wires": []
+  },
+  {
+      "id": "00c2be8102cabb41",
+      "type": "change",
+      "z": "69910d73c4999f01",
+      "name": "result",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "{\"result\":\"OK\"}",
+              "tot": "json"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 810,
+      "y": 400,
+      "wires": [
+          [
+              "4bdd485f.57fdd8"
+          ]
+      ]
+  },
+  {
+      "id": "79b7585d97706561",
+      "type": "serial-port",
+      "serialport": "COM4",
+      "serialbaud": "115200",
+      "databits": "8",
+      "parity": "none",
+      "stopbits": "1",
+      "waitfor": "",
+      "dtr": "none",
+      "rts": "none",
+      "cts": "none",
+      "dsr": "none",
+      "newline": "\\n",
+      "bin": "false",
+      "out": "char",
+      "addchar": "",
+      "responsetimeout": "10000"
+  }
+]
