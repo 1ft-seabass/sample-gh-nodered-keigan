@@ -7,6 +7,12 @@
 - 2022/02/13 時点で、[node-red-contrib-keigan-motor-sequencer](https://flows.nodered.org/node/node-red-contrib-keigan-motor-sequencer) は Windows にインストールできません
 - そのため [Keigan ローレベル API](https://docs.keigan-motor.com/software_dev/lowapis/lowlevel_api_summary) で、直接シリアルポートに命令する形で実現しています。
 
+もしかすると Mac でもイケるかもしれないです。
+
+## Raspberry Pi でやりたい方は
+
+素直に [sample-gh-keigan-nodered](../sample-gh-keigan-nodered/README.md) で設定を行いましょう。
+
 ## この仕組みについて
 
 * gh から 1 台つないだ KeiganMotor をつないだ Node-RED を動かす仕組みです。
@@ -22,7 +28,7 @@
   - GH と Node-RED が同じ PC である場合は、localhost か 127.0.0.1 でアクセスできます。
 - Node-RED を動かしている Windows PC がつなげている Keigan モーターのシリアルポートのアドレス
   - `COM1` のような `COM` + `数字` という形で把握しましょう
-  - [[sample] Windows C# による KeiganMotor 制御 > シリアルポートの確認](https://docs.keigan-motor.com/software_dev/windows-c/windows-c-sharp-net#i-3) でKeiganMotor を接続し、シリアルポートの確認を行って下さい。シリアルポートの番号は、Windows の [デバイスマネージャ] > [ポート] から確認できます。
+  - まず、[LED 接続チェック sample-connectivity-check-on-by-led-windows](../sample-connectivity-check-on-by-led-windows/README.md) でシリアルポートの把握に慣れておきましょう。
 
 ## Node-RED
 
